@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "587395685328",
+    "project_id": "newinstagram-5e7d1",
+    "storage_bucket": "newinstagram-5e7d1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:587395685328:android:0f1a480a8f82a7381537d5",
+        "android_client_info": {
+          "package_name": "com.newinstagram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "587395685328-as27eebp8qvan8qk3p1usb2j1ga70rmc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZV3wgc8IuUa-ziA6yw8j9o-QJpfGk2wI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "587395685328-as27eebp8qvan8qk3p1usb2j1ga70rmc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
