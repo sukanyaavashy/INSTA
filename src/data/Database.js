@@ -1,5 +1,6 @@
 export const USERS = [
   {
+
     user: 'andria',
     image:
       'https://i0.wp.com/bloggers.society19.com/wp-content/uploads/2015/11/water-40.jpg?resize=563%2C755&ssl=1',
@@ -76,17 +77,17 @@ export const VIDEODATA = [
 
 export const FriendsProfileData = [
   {
-    name: 'Ram_Charan',
-    accountName: 'Ram Charan',
+    name: 'Sweety',
+    accountName: 'Sweety',
     profileImage: require('../assets/images/post1.jpg'),
-    posts: 56,
-    followers: 6542,
-    following: 43,
+    posts: 66,
+    followers: 7542,
+    following: 53,
     follow: false,
   },
   {
-    name: 'The_Tom',
-    accountName: 'Tom',
+    name: 'Pinky',
+    accountName: 'Pinky_The_Pink',
     profileImage: require('../assets/images/post1.jpg'),
     posts: 24,
     followers: 1253,

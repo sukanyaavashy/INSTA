@@ -13,7 +13,6 @@ import FriendProfile from './components/Activity/FriendProfile';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import EditProfile from './components/Profile/EditProfile';
 import { ProfileButtons } from './components/Activity/ProfileBody';
-
 import Ionic from 'react-native-vector-icons/Ionicons'
 
 
@@ -27,9 +26,6 @@ const Authentication = () => {
     <Stack.Navigator initialRouteName='LoginScreen'>
       <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false}}/>
       <Stack.Screen name="RegistrationScreen" component={RegistrationScreen} options={{ headerShown: false}} />
-      {/* <Stack.Screen name="RegistrationScreen" component={RegistrationScreen} options={{ headerShown: false}} /> */}
-
-
     </Stack.Navigator>
   </NavigationContainer>
   )
@@ -47,12 +43,8 @@ const HomeStackNavigation = () =>{
           headerShown: false,
           tabBarStyle: {
            height: 50,
+           backgroundColor: '#f9f9f9',
           },
-        //   tabBarOptions: {
-        //     style: {
-        //         backgroundColor: '#f9f9f9',
-        //     },
-        // },
       tabBarIcon: ({ focused, color, size }) => {
         let iconName
         if (route.name === 'Home') {
@@ -98,7 +90,6 @@ const StackScreen = () =>{
         <Stack.Screen name= 'HomeStackNavigation' component={HomeStackNavigation} options={{headerShown:false}}/>
         <Stack.Screen name= 'FriendProfile' component={FriendProfile} options={{headerShown:false}}/>
         <Stack.Screen name= 'EditProfile' component={EditProfile} options={{headerShown:false}}/>
-        {/* <Stack.Screen name = 'ProfileButtons' component={ProfileButtons} options={{headerShown:false}}/> */}
       </Stack.Navigator>
     </NavigationContainer>
   )

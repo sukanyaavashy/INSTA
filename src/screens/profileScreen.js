@@ -1,12 +1,12 @@
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
-// import { ProfileBody } from '../components/Activity/ProfileBody';
-// import { ProfileButtons } from '../components/Activity/ProfileBody';
+import {View, Text, ScrollView,Image,StyleSheet } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import BottomTabView from '../components/Profile/BottomTabView';
 import { ProfileBody } from '../components/Profile/ProfileBody';
 import { ProfileButtons } from '../components/Profile/ProfileButtons';
 import { USERS } from '../data/Database';
+import { POSTS } from '../data/post';
+
 
 const Profile = ({navigation}) => {
   let circuls = [];
@@ -48,18 +48,19 @@ const Profile = ({navigation}) => {
     <View style={{width: '100%', height: '100%', backgroundColor: 'white'}}>
       <View style={{width: '100%', padding: 10}}>
         <ProfileBody
-          name="Mr Peobody"
-          accountName="mr_peobody"
-          profileImage={require('../assets/images/userProfile.jpg')}
-          followers="3.6M"
+          name={POSTS[0].user}
+          accountName={POSTS[0].user}
+          profileImage={{uri:POSTS[0].imageUrl}}
+          post="344"
+          followers="4.6M"
           following="35"
-          post="458"
+          // POSTS="458"
         />
         <ProfileButtons
           id={0}
-          name="Mr Peobody"
-          accountName="mr_peobody"
-          profileImage={require('../assets/images/userProfile.jpg')}
+          name={POSTS[0].user}
+          accountName={POSTS[0].user}
+          profileImage={{uri:POSTS[0].imageUrl}}
           navigation={navigation}
         />
       </View>
@@ -72,15 +73,17 @@ const Profile = ({navigation}) => {
           }}>
           Story Highlights
         </Text>
-        <ScrollView
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          style={{
-            paddingVertical: 5,
-            paddingHorizontal: 10,
-          }}>
-          {circuls}
-        </ScrollView>
+        <View style={{marginBottom: 13}}>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        {USERS.map((story, index) => (
+          <View
+            key={index}
+            style={{alignItems: 'center', justifyContent: 'center'}}>
+            <Image source={{uri: story.image}} style={styles.story} />
+          </View>
+        ))}
+      </ScrollView>
+    </View>
       </View>
       <BottomTabView />
     </View>
@@ -88,3 +91,14 @@ const Profile = ({navigation}) => {
 };
 
 export default Profile;
+
+const styles = StyleSheet.create({
+  story: {
+    width: 70,
+    height: 70,
+    marginLeft: 6,
+    borderWidth: 3,
+    borderColor: '#ff8501',
+    borderRadius: 70,
+  },
+});

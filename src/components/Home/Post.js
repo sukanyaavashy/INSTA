@@ -42,7 +42,7 @@ const PostHeader = ({post}) => (
         </Text>
     </View>
     <TouchableOpacity>
-      <Icon style={styles.icon} name="ellipsis-horizontal-outline" size={20} color="#fff"/>
+      <Icon style={styles.icon} name="ellipsis-vertical-outline" size={20} color="#fff"/>
     </TouchableOpacity>
   </View>
 );

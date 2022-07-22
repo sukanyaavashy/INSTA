@@ -4,12 +4,9 @@ import Header from '../components/Home/Header';
 import Stories from '../components/Home/Stories';
 import Post from '../components/Home/Post';
 import { POSTS } from '../data/post';
-// import Post from '../../components/Home/Post';
-// import {POSTS} from '../../data/post';
-import { getUserUid } from "../redux/actions";
-import { useDispatch} from "react-redux";
 
-const Home = ({navigation}) => {
+
+const Home = () => {
   return (
     <SafeAreaView style={{backgroundColor: 'black', flex: 1}}>
       <Header />
@@ -17,7 +14,6 @@ const Home = ({navigation}) => {
       <ScrollView >
         {POSTS.map((post, index) => (<Post post = {post} key = {index}/>))}
         </ScrollView>
-        {/* <BottomTabs/> */}
     </SafeAreaView>
   );
 };

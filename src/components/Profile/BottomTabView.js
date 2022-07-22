@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React from 'react';
 import {View, Text, ScrollView,TouchableOpacity,Image} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Ionic from 'react-native-vector-icons/Ionicons';
@@ -61,19 +61,7 @@ const BottomTabView = () => {
       </ScrollView>
     );
   };
-  const Video = ({item, index, currentIndex}) => {
-    const videoRef = useRef(null);
-
-  const onBuffer = buffer => {
-    console.log('buffring', buffer);
-  };
-  const onError = error => {
-    console.log('error', error);
-  };
-
-  const [mute, setMute] = useState(false);
-
-  // const [like, setLike] = useState(item.isLike);
+  const Video = () => {
     return (
       <ScrollView
         showsVerticalScrollIndicator={false}
@@ -91,26 +79,7 @@ const BottomTabView = () => {
             paddingVertical: 5,
             justifyContent: 'space-between',
           }}>
-          {VIDEODATA.map((index, key)=>(
-            <TouchableOpacity>
-              <Video
-                videoRef={videoRef}
-                onBuffer={onBuffer}
-                onError={onError}
-                repeat={true}
-                resizeMode="cover"
-                paused={currentIndex == index ? false : true}
-                source={{uri:item.video}}
-                muted={mute}
-                // style={{
-                //     width: '100%',
-                //     height: '100%',
-                //     position: 'absolute',
-                //  }}
-                />
-            </TouchableOpacity>
-
-          ))}
+          {squares}
         </View>
       </ScrollView>
     );
