@@ -1,8 +1,12 @@
-import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import React, {useRef, useState} from 'react';
+import {View, Text, ScrollView,TouchableOpacity,Image} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Ionic from 'react-native-vector-icons/Ionicons';
 import { USERS } from '../../data/Database';
+import { POSTS } from '../../data/post';
+import { VIDEODATA } from '../../data/Database';
+import Video from 'react-native-video';
+import SingleReel from '../Reels/SingleReel';
 
 const BottomTabView = () => {
   const Tab = createMaterialTopTabNavigator();
@@ -44,12 +48,32 @@ const BottomTabView = () => {
             paddingVertical: 5,
             justifyContent: 'space-between',
           }}>
-          {squares}
+          {USERS.map((index, key)=>(
+            <TouchableOpacity>
+              <Image style={{height:150, width:130,marginVertical:0.5}}
+                source={{uri:index.image}}
+                key={key}
+              />
+            </TouchableOpacity>
+
+          ))}
         </View>
       </ScrollView>
     );
   };
-  const Video = () => {
+  const Video = ({item, index, currentIndex}) => {
+    const videoRef = useRef(null);
+
+  const onBuffer = buffer => {
+    console.log('buffring', buffer);
+  };
+  const onError = error => {
+    console.log('error', error);
+  };
+
+  const [mute, setMute] = useState(false);
+
+  // const [like, setLike] = useState(item.isLike);
     return (
       <ScrollView
         showsVerticalScrollIndicator={false}
@@ -67,7 +91,26 @@ const BottomTabView = () => {
             paddingVertical: 5,
             justifyContent: 'space-between',
           }}>
-          {squares}
+          {VIDEODATA.map((index, key)=>(
+            <TouchableOpacity>
+              <Video
+                videoRef={videoRef}
+                onBuffer={onBuffer}
+                onError={onError}
+                repeat={true}
+                resizeMode="cover"
+                paused={currentIndex == index ? false : true}
+                source={{uri:item.video}}
+                muted={mute}
+                // style={{
+                //     width: '100%',
+                //     height: '100%',
+                //     position: 'absolute',
+                //  }}
+                />
+            </TouchableOpacity>
+
+          ))}
         </View>
       </ScrollView>
     );
