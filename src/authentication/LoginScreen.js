@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component,useEffect,useState} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity, TextInput,Image,Alert} from 'react-native';
 import {useSelector,useDispatch} from "react-redux";
 import {setEmail,setPassword,getUserUid} from "../redux/actions";
@@ -13,6 +13,13 @@ const LoginScreen = ({navigation}) => {
   const dispatch =useDispatch()
   const storeData = useSelector((state)=>state)
   const {email,password,uid}=useSelector(state=>state.userReducer);
+  // const [isLoading, setIsLoading] = useState(false);
+
+  // useEffect(() => {
+  //   return () => {
+  //     setIsLoading(false);
+  //   }
+  // }, []);
 
 
 
@@ -36,14 +43,18 @@ const LoginScreen = ({navigation}) => {
         ).catch(
           function(e){
             if (e.code==="auth/user-not-found"){
+              // setIsLoading(false);
               return(Alert.alert("In correct email"))
             }else if(e.code==="auth/wrong-password"){
+              // setIsLoading(false);
               return(Alert.alert("The password is invalid"))
             }else if(e.code==="auth/invalid-email"){
+              // setIsLoading(false);
               return(Alert.alert("Enter valid email"))
 
             }
             else{
+              // setIsLoading(false);
               return(console.log(e.message),Alert.alert(e.mesage))
             }
 

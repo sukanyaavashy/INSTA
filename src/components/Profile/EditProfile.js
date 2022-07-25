@@ -6,6 +6,7 @@ import {
   ToastAndroid,
   Image,
   TextInput,
+  Pressable
 } from 'react-native';
 import Ionic from 'react-native-vector-icons/Ionicons';
 import { useDispatch} from "react-redux";
@@ -24,6 +25,14 @@ const EditProfile = ({route, navigation}) => {
   const TostMessage = () => {
     ToastAndroid.show('Edited Sucessfully !', ToastAndroid.SHORT);
   };
+
+
+const modelFun = () =>{
+  console.log("new");
+
+}
+
+
   return (
     <View
       style={{
@@ -55,12 +64,15 @@ const EditProfile = ({route, navigation}) => {
           source={profileImage}
           style={{width: 80, height: 80, borderRadius: 100}}
         />
+        <Pressable onPress={modelFun}>
         <Text
           style={{
             color: '#3493D9',
           }}>
           Change profile photo
         </Text>
+        </Pressable>
+
       </View>
       <View style={{padding: 10}}>
         <View>

@@ -14,7 +14,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import EditProfile from './components/Profile/EditProfile';
 import { ProfileButtons } from './components/Activity/ProfileBody';
 import Ionic from 'react-native-vector-icons/Ionicons'
-
+import Status from './components/Home/Status';
+import SplashScreen from './screens/SplashScreen';
 
 
 const Authentication = () => {
@@ -23,7 +24,8 @@ const Authentication = () => {
 
   return (
     <NavigationContainer>
-    <Stack.Navigator initialRouteName='LoginScreen'>
+    <Stack.Navigator >
+    <Stack.Screen name="SplashScreen" component={SplashScreen} options={{ headerShown: false}}/>
       <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false}}/>
       <Stack.Screen name="RegistrationScreen" component={RegistrationScreen} options={{ headerShown: false}} />
     </Stack.Navigator>
@@ -88,8 +90,10 @@ const StackScreen = () =>{
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name= 'HomeStackNavigation' component={HomeStackNavigation} options={{headerShown:false}}/>
+        <Stack.Screen name= 'Status' component={Status} options={{headerShown:false}}/>
         <Stack.Screen name= 'FriendProfile' component={FriendProfile} options={{headerShown:false}}/>
         <Stack.Screen name= 'EditProfile' component={EditProfile} options={{headerShown:false}}/>
+
       </Stack.Navigator>
     </NavigationContainer>
   )

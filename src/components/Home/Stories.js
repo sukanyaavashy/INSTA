@@ -1,12 +1,21 @@
 import React from 'react';
-import {View, Text, ScrollView, Image, StyleSheet} from 'react-native';
+import {View, Text, ScrollView, Image, StyleSheet,TouchableOpacity} from 'react-native';
 import {USERS} from '../../data/Database';
 
-const Stories = () => {
+const Stories = ({navigation}) => {
+  // console.log("navigation",navigation.navigate)
   return (
     <View style={{marginBottom: 13}}>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         {USERS.map((story, index) => (
+          <TouchableOpacity
+          key={index}
+          onPress={() =>
+            navigation.navigate('Status', {
+              user: story.user,
+              image: story.image,
+            })
+          }>
           <View
             key={index}
             style={{alignItems: 'center', justifyContent: 'center'}}>
@@ -17,6 +26,7 @@ const Stories = () => {
                 : story.user.toLowerCase()}
             </Text>
           </View>
+          </TouchableOpacity>
         ))}
       </ScrollView>
     </View>

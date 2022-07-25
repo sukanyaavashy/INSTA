@@ -98,7 +98,7 @@ const PostCommentSection = ({post}) => (
     {!!post.comments.length && (
       <Text style={{color: 'gray',flexWrap: 'wrap',flex: 1}}>
         View {post.comments.length > 1 ? 'all' : ''} {post.comments.length}
-        {post.comments.length > 1 ? 'commnets' : 'comment'}
+        {post.comments.length > 1 ? ' commnets' : ' comment'}
       </Text>
     )}
   </View>

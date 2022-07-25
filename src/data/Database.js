@@ -6,21 +6,25 @@ export const USERS = [
       'https://i0.wp.com/bloggers.society19.com/wp-content/uploads/2015/11/water-40.jpg?resize=563%2C755&ssl=1',
   },
   {
+
     user: 'catherin',
     image:
       'https://images.unsplash.com/photo-1615912844755-bd8b6dd6789e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW5zdGFncmFtJTIwc3Rvcmllc3xlbnwwfHwwfHw%3D&w=1000&q=80',
   },
   {
+
     user: 'jessy',
     image:
       'https://www.galaxymarketing.global/wp-content/uploads/2021/06/image-181-3.jpg',
   },
   {
+
     user: 'prince',
     image:
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5HuL4FEl6A53Ec25nbO10c1i2txsAu0HXyHHvT9JWEZma7xK1tupllHJeVqtLILNOrBY&usqp=CAU',
   },
   {
+
     user: 'mary',
     image:
       'https://i.pinimg.com/550x/c1/52/a8/c152a8855555b9813f6786ede9bb85ed.jpg',

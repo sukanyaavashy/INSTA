@@ -6,11 +6,12 @@ import Post from '../components/Home/Post';
 import { POSTS } from '../data/post';
 
 
-const Home = () => {
+const Home = ({navigation}) => {
   return (
     <SafeAreaView style={{backgroundColor: 'black', flex: 1}}>
       <Header />
-      <Stories />
+      <Stories
+      navigation={navigation}/>
       <ScrollView >
         {POSTS.map((post, index) => (<Post post = {post} key = {index}/>))}
         </ScrollView>
