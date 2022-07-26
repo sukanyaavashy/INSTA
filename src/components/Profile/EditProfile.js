@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState}from 'react';
 import {
   View,
   Text,
@@ -6,33 +6,61 @@ import {
   ToastAndroid,
   Image,
   TextInput,
-  Pressable
+  Pressable,
+  Modal,
+  StyleSheet
 } from 'react-native';
 import Ionic from 'react-native-vector-icons/Ionicons';
-import { useDispatch} from "react-redux";
 import { getUserUid } from '../../redux/actions';
+import ImageCropPicker from 'react-native-image-crop-picker';
+import auth from '@react-native-firebase/auth';
+import {useSelector,useDispatch} from "react-redux";
+import { getUserName } from '../../redux/actions';
 
 
 const EditProfile = ({route, navigation}) => {
-  const dispatch = useDispatch();
+  const {name, accountName, profileImage} = route.params;
+  const [modalVisible, setModalVisible] = useState(false);
+  //const [userName, setUserName] = useState('')
+  const [profileName, setProfileName] = useState('')
+  const [image,setImage] = useState('https://i0.wp.com/bloggers.society19.com/wp-content/uploads/2015/11/water-40.jpg?resize=563%2C755&ssl=1')
+  const dispatch =useDispatch()
+  const storeData = useSelector((state)=>state)
+  const {userName}=useSelector(state=>state.userReducer);
+
+
 
   function logOut() {
     dispatch(getUserUid(''));
   }
 
-  const {name, accountName, profileImage} = route.params;
+  // const {name, accountName, profileImage} = route.params;
   console.log("edit profile",navigation)
   const TostMessage = () => {
     ToastAndroid.show('Edited Sucessfully !', ToastAndroid.SHORT);
   };
 
-
-const modelFun = () =>{
-  console.log("new");
-
+const setGalleryPic = () =>{
+  ImageCropPicker.openPicker({
+    width: 300,
+    height: 400,
+    cropping: true
+  }).then(image => {
+    console.log(image);
+    setImage(image.path)
+  });
 }
 
-
+const setCameraPic = () =>{
+  ImageCropPicker.openCamera({
+    width: 300,
+    height: 400,
+    cropping: true,
+  }).then(image => {
+    console.log(image);
+    setImage(image.path)
+  });
+}
   return (
     <View
       style={{
@@ -61,10 +89,45 @@ const modelFun = () =>{
       </View>
       <View style={{padding: 20, alignItems: 'center'}}>
         <Image
-          source={profileImage}
+          // source={image}
+          source={{uri:`${image}`}}
           style={{width: 80, height: 80, borderRadius: 100}}
         />
-        <Pressable onPress={modelFun}>
+
+        <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Pressable>
+            <Text style={styles.modalText}>Change Profile Photo</Text>
+            </Pressable>
+            <Pressable onPress={setGalleryPic}>
+            <Text style={styles.modalText}>Profile from Gallery</Text>
+            </Pressable>
+            <Pressable onPress={setCameraPic}>
+            <Text style={styles.modalText}>Profile from Camera</Text>
+            </Pressable>
+            <Pressable>
+            <Text style={styles.modalText}>Remove Profile Photo</Text>
+            </Pressable>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+
+        <Pressable onPress={() => setModalVisible(!modalVisible)}>
         <Text
           style={{
             color: '#3493D9',
@@ -84,7 +147,9 @@ const modelFun = () =>{
           </Text>
           <TextInput
             placeholder="name"
-            defaultValue={name}
+            defaultValue={profileName}
+            onChangeText={(text)=>setProfileName(profileName)}
+
             style={{
               fontSize: 16,
               borderBottomWidth: 1,
@@ -101,7 +166,8 @@ const modelFun = () =>{
           </Text>
           <TextInput
             placeholder="accountname"
-            defaultValue={accountName}
+            value={userName}
+            onChangeText={(value)=>dispatch(getUserName(value))}
             style={{
               fontSize: 16,
               borderBottomWidth: 1,
@@ -149,3 +215,47 @@ const modelFun = () =>{
 };
 
 export default EditProfile;
+
+const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  }
+});

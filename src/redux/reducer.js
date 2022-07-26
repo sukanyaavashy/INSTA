@@ -1,4 +1,4 @@
-import { SET_USER_PASSWORD,SET_USER_Email,GET_USER_UID,GET_TOKEN,REMOVE_TOKEN} from "./actions";
+import { SET_USER_PASSWORD,SET_USER_Email,GET_USER_UID,GET_TOKEN,REMOVE_TOKEN, USER_NAME} from "./actions";
 
 
 const initialState={
@@ -6,6 +6,7 @@ const initialState={
     password:"",
     uid:"",
     token: "",
+    userName:'',
 }
 
 function userReducer(state=initialState,action){
@@ -20,6 +21,8 @@ function userReducer(state=initialState,action){
             return{...state,token:action.payload};
         case REMOVE_TOKEN:
             return{...state,token:action.payload}
+        case USER_NAME:
+            return {...state,userName:action.payload};
         default:
             return state;
     }

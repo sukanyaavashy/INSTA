@@ -3,6 +3,7 @@ export const SET_USER_PASSWORD="SET_USER_PASSWORD";
 export const GET_USER_UID="GET_USER_UID";
 export const GET_TOKEN="GET_TOKEN";
 export const REMOVE_TOKEN="REMOVE_TOKEN";
+export const USER_NAME="USER_NAME";
 
 export const getUserUid = uid => dispatch => {
     dispatch({
@@ -37,5 +38,12 @@ export const removeToken=() =>dispatch=>{
     dispatch({
         type:REMOVE_TOKEN,
 
+    })
+}
+
+export const getUserName = userName => dispatch => {
+    dispatch({
+        type:USER_NAME,
+        payload:userName,
     })
 }
