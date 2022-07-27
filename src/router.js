@@ -16,6 +16,8 @@ import { ProfileButtons } from './components/Activity/ProfileBody';
 import Ionic from 'react-native-vector-icons/Ionicons'
 import Status from './components/Home/Status';
 import SplashScreen from './screens/SplashScreen';
+import ChatList from './components/Home/ChatList';
+import Chat from './components/Home/Chat';
 
 
 const Authentication = () => {
@@ -88,11 +90,13 @@ const StackScreen = () =>{
   const Stack = createNativeStackNavigator()
   return(
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name= 'HomeStackNavigation' component={HomeStackNavigation} options={{headerShown:false}}/>
-        <Stack.Screen name= 'Status' component={Status} options={{headerShown:false}}/>
-        <Stack.Screen name= 'FriendProfile' component={FriendProfile} options={{headerShown:false}}/>
-        <Stack.Screen name= 'EditProfile' component={EditProfile} options={{headerShown:false}}/>
+      <Stack.Navigator screenOptions={{headerShown:false}}>
+        <Stack.Screen name= 'HomeStackNavigation' component={HomeStackNavigation} />
+        <Stack.Screen name= 'Status' component={Status} />
+        <Stack.Screen name= 'ChatList' component={ChatList} />
+        <Stack.Screen name= 'Chat' component={Chat} />
+        <Stack.Screen name= 'FriendProfile' component={FriendProfile} />
+        <Stack.Screen name= 'EditProfile' component={EditProfile} />
 
       </Stack.Navigator>
     </NavigationContainer>

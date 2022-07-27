@@ -1,8 +1,9 @@
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { NavigationContainer } from '@react-navigation/native';
 
-const Header = () => {
+const Header = ({navigation}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity>
@@ -28,7 +29,7 @@ const Header = () => {
             color="#fff"
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>navigation.navigate("ChatList")}>
           <View style={styles.unreadBadge}>
             <Text style={styles.unreadBadgetext}> 18 </Text>
           </View>

@@ -15,18 +15,20 @@ import { getUserUid } from '../../redux/actions';
 import ImageCropPicker from 'react-native-image-crop-picker';
 import auth from '@react-native-firebase/auth';
 import {useSelector,useDispatch} from "react-redux";
-import { getUserName } from '../../redux/actions';
+import { getUserName,getprofileName,getImageProfile} from '../../redux/actions';
 
 
 const EditProfile = ({route, navigation}) => {
   const {name, accountName, profileImage} = route.params;
   const [modalVisible, setModalVisible] = useState(false);
   //const [userName, setUserName] = useState('')
-  const [profileName, setProfileName] = useState('')
-  const [image,setImage] = useState('https://i0.wp.com/bloggers.society19.com/wp-content/uploads/2015/11/water-40.jpg?resize=563%2C755&ssl=1')
+  // const [profileName, setProfileName] = useState('')
+  // const [image,setImage] = useState('https://i0.wp.com/bloggers.society19.com/wp-content/uploads/2015/11/water-40.jpg?resize=563%2C755&ssl=1')
   const dispatch =useDispatch()
   const storeData = useSelector((state)=>state)
-  const {userName}=useSelector(state=>state.userReducer);
+  const userName=storeData.userReducer.userName;
+  const profileName=storeData.userReducer.profileName;
+  const imageProfile=storeData.userReducer.imageProfile;
 
 
 
@@ -47,7 +49,8 @@ const setGalleryPic = () =>{
     cropping: true
   }).then(image => {
     console.log(image);
-    setImage(image.path)
+    // setImage(image.path)
+    dispatch(getImageProfile(image.path))
   });
 }
 
@@ -58,9 +61,19 @@ const setCameraPic = () =>{
     cropping: true,
   }).then(image => {
     console.log(image);
-    setImage(image.path)
+    dispatch(getImageProfile(image.path))
   });
 }
+
+const updatedName = (value) => {
+  dispatch(getprofileName(value))
+}
+
+const setRemovePic = () => {
+  dispatch(getImageProfile("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWd2Er6aGk46GpGePsuN9SgkYasGWZfc0L2jtrg4dSenLmtdD7kcWxTKaG0qp1osENax4&usqp=CAU"))
+
+}
+
   return (
     <View
       style={{
@@ -82,7 +95,14 @@ const setCameraPic = () =>{
         <TouchableOpacity
           onPress={() => {
             TostMessage();
-            navigation.goBack();
+            navigation.goBack(
+              {
+                profileName:profileName,
+                userName:userName
+              }
+            );
+
+
           }}>
           <Ionic name="checkmark" style={{fontSize: 35, color: '#3493D9'}} />
         </TouchableOpacity>
@@ -90,7 +110,8 @@ const setCameraPic = () =>{
       <View style={{padding: 20, alignItems: 'center'}}>
         <Image
           // source={image}
-          source={{uri:`${image}`}}
+          source = {{uri:`${imageProfile}`}}
+          // source={{uri:imageProfile}}
           style={{width: 80, height: 80, borderRadius: 100}}
         />
 
@@ -114,7 +135,7 @@ const setCameraPic = () =>{
             <Pressable onPress={setCameraPic}>
             <Text style={styles.modalText}>Profile from Camera</Text>
             </Pressable>
-            <Pressable>
+            <Pressable onPress={setRemovePic}>
             <Text style={styles.modalText}>Remove Profile Photo</Text>
             </Pressable>
             <Pressable
@@ -147,8 +168,8 @@ const setCameraPic = () =>{
           </Text>
           <TextInput
             placeholder="name"
-            defaultValue={profileName}
-            onChangeText={(text)=>setProfileName(profileName)}
+            value={profileName}
+            onChangeText={updatedName}
 
             style={{
               fontSize: 16,

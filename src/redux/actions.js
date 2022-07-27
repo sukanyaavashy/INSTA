@@ -4,11 +4,19 @@ export const GET_USER_UID="GET_USER_UID";
 export const GET_TOKEN="GET_TOKEN";
 export const REMOVE_TOKEN="REMOVE_TOKEN";
 export const USER_NAME="USER_NAME";
+export const PROFILE_NAME = "PROFILE_NAME"
+export const IMAGE_PROFILE = 'IMAGE_PROFILE'
 
 export const getUserUid = uid => dispatch => {
     dispatch({
         type:GET_USER_UID,
         payload:uid,
+    })
+}
+export const getImageProfile = imageProfile => dispatch => {
+    dispatch({
+        type:IMAGE_PROFILE,
+        payload:imageProfile,
     })
 }
 
@@ -47,3 +55,11 @@ export const getUserName = userName => dispatch => {
         payload:userName,
     })
 }
+export const getprofileName = profileName => dispatch => {
+    dispatch({
+        type:PROFILE_NAME,
+        payload:profileName,
+    })
+}
+
+

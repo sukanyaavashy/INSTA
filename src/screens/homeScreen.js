@@ -9,7 +9,8 @@ import { POSTS } from '../data/post';
 const Home = ({navigation}) => {
   return (
     <SafeAreaView style={{backgroundColor: 'black', flex: 1}}>
-      <Header />
+      <Header
+      navigation={navigation}/>
       <Stories
       navigation={navigation}/>
       <ScrollView >

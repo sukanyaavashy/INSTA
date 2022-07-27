@@ -2,19 +2,30 @@ import React from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import {useNavigation} from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 
 
 export const ProfileBody = ({
-  name,
-  accountName,
-  profileImage,
+  // route,
+  // params,
+  // name,
+  // accountName,
+  // profileImage,
   post,
   followers,
   following,
 }) => {
+
+  // const dispatch =useDispatch()
+  const storeData = useSelector((state)=>state)
+  const userName=storeData.userReducer.userName;
+  const profileName=storeData.userReducer.profileName;
+  const imageProfile=storeData.userReducer.imageProfile;
+
+
   return (
     <View>
-      {accountName ? (
+      {userName ? (
         <View
           style={{
             flexDirection: 'row',
@@ -31,7 +42,7 @@ export const ProfileBody = ({
                 fontSize: 18,
                 fontWeight: 'bold',
               }}>
-              {accountName}
+              {userName}
             </Text>
             <Feather
               name="chevron-down"
@@ -73,7 +84,8 @@ export const ProfileBody = ({
             alignItems: 'center',
           }}>
           <Image
-            source={profileImage}
+            source = {{uri:`${imageProfile}`}}
+            // source={imageProfile}
             style={{
               resizeMode: 'cover',
               width: 80,
@@ -86,7 +98,7 @@ export const ProfileBody = ({
               paddingVertical: 5,
               fontWeight: 'bold',
             }}>
-            {name}
+            {profileName}
           </Text>
         </View>
         <View style={{alignItems: 'center'}}>
