@@ -6,8 +6,8 @@ const initialState={
     password:"",
     uid:"",
     token: "",
-    profileName: "",
-    userName:'',
+    profileName: "Smiley",
+    userName:'Princess Land',
     imageProfile:'https://i0.wp.com/bloggers.society19.com/wp-content/uploads/2015/11/water-40.jpg?resize=563%2C755&ssl=1'
 }
 

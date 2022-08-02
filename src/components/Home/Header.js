@@ -1,9 +1,12 @@
-import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
-import React from 'react';
+import {StyleSheet, Text, View, TouchableOpacity, Image,Modal,Pressable} from 'react-native';
+import React,{useState} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
 
 const Header = ({navigation}) => {
+  const [modalVisible, setModalVisible] = useState(false);
+
+
   return (
     <View style={styles.container}>
       <TouchableOpacity>
@@ -12,8 +15,54 @@ const Header = ({navigation}) => {
           source={require('../../assets/images/logo.jpg')}
         />
       </TouchableOpacity>
+  <View >
+  <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          //setModalVisible(!modalVisible);
+        }}
+      >
+        <Pressable onPress={() => setModalVisible(!modalVisible)}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+
+            <Pressable>
+            <View style={styles.modelCard}>
+            <Text style={styles.modalText}>Post</Text>
+            <Icon style={styles.icon} name="reader-outline" size={30} color="#000"/>
+            </View>
+            </Pressable>
+
+
+            <Pressable >
+            <View style={styles.modelCard}>
+            <Text style={styles.modalText}>Story</Text>
+            <Icon style={styles.icon} name="add-circle-outline" size={30} color="#000"/>
+            </View>
+            </Pressable>
+            <Pressable >
+            <View style={styles.modelCard}>
+            <Text style={styles.modalText}>Reel</Text>
+            <Icon style={styles.icon} name="videocam-outline" size={30} color="#000"/>
+            </View>
+            </Pressable>
+            <Pressable >
+            <View style={styles.modelCard}>
+            <Text style={styles.modalText}>Live</Text>
+            <Icon style={styles.icon} name="wifi-outline" size={30} color="#000"/>
+            </View>
+            </Pressable>
+          </View>
+        </View>
+        </Pressable>
+      </Modal>
+  </View>
+
       <View style={styles.iconsContainer}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
           <Icon
             style={styles.icon}
             name="add-circle-outline"
@@ -21,14 +70,14 @@ const Header = ({navigation}) => {
             color="#fff"
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        {/* <TouchableOpacity>
           <Icon
             style={styles.icon}
             name="heart-outline"
             size={30}
             color="#fff"
           />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity onPress={()=>navigation.navigate("ChatList")}>
           <View style={styles.unreadBadge}>
             <Text style={styles.unreadBadgetext}> 18 </Text>
@@ -54,6 +103,50 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginHorizontal: 20,
   },
+  modelText:{
+    backgroundColor:"white",
+    color:"white"
+
+  },
+  // modelContainer:{
+  //   alignItems:'flex-end',
+  //   justifyContent:'flex-end',
+
+
+  // },
+  modalView: {
+    marginLeft:240,
+    marginTop:60,
+    width:150,
+    backgroundColor: "white",
+    borderRadius: 10,
+    // padding: 35,
+    alignItems: "flex-start",
+    padding:10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  modalText: {
+    marginBottom: 25,
+    marginRight:50,
+    // textAlign: "center"
+  },
+  modelCard:{
+    flexDirection:"row",
+    // justifyContent:"space-around"
+  },
+  // centeredView: {
+  //   flex: 1,
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   // marginTop: 22
+  // },
   logo: {
     width: 100,
     height: 80,

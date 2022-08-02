@@ -8,7 +8,7 @@ const SplashScreen = ({navigation}) => {
     useEffect(()=>{
         setTimeout(()=>{
           navigation.navigate('LoginScreen')
-        },2000)
+        },10000)
 
       },)
   return (
@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     container: {
         display: 'flex',
         flex: 1,
+        backgroundColor:"white"
       },
       iconContainer: {
         display: 'flex',
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'flex-end',
         alignSelf: 'center',
-        marginBottom: 30,
+        marginBottom: 50,
       },
       logoTextWrapper: {
         width: '100%',
@@ -64,8 +65,9 @@ const styles = StyleSheet.create({
       logo: {
         flex: 1,
         alignSelf: 'center',
-        height: '100%',
+        // height: '100%',
         width: '80%',
+        height:80
       },
       from: {
         color: 'gray',

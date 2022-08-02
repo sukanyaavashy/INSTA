@@ -21,39 +21,29 @@ const ChatList = ({navigation}) => {
 
 },[navigation])
 
-const chat=(pic,Name)=>{
-  console.log("chat")
-  navigation.navigate("Chat",{img:pic,name:Name})
-}
+// const chat=(pic,Name)=>{
+//   console.log("chat")
+//   navigation.navigate("Chat",{img:pic,name:Name})
+// }
 
 const renderItem =({item})=>{
   return(
-  <View style={styles.item}>
-  <TouchableOpacity onPress={()=>{modalFunc(item.avatar)}}>
-    <View>
-    <Image
-        style={styles.image}
-        source={{uri:`${item.avatar}`}}
-   />
+    <TouchableOpacity onPress={()=>{navigation.navigate("Chat")}}>
+    <View style={styles.item}>
+
+        <Image
+            style={styles.image}
+            source={{uri:`${item.avatar}`}}
+        />
+        <Text>{item.first_name} {item.last_name}</Text>
+
+        {/* </TouchableOpacity> */}
+        {/* <TouchableOpacity onPress={()=>{navigation.navigate("Chat")}}> */}
+
+
     </View>
-
-
-      </TouchableOpacity>
-      <TouchableOpacity onPress={()=>chat(item.avatar,item.first_name)}>
-      <View style={styles.userName}>
-
-      <Text>
-          {
-            item.first_name
-          } {item.last_name}
-
-          </Text>
-
-
-      </View>
-      </TouchableOpacity>
-      </View>)
-}
+    </TouchableOpacity>
+  )}
 
 return (
     <View>
